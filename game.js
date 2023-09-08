@@ -1,45 +1,94 @@
-$(document).ready(function () {
-    // Load the story JSON file
+// Initial game state
+let gameState = {
+    currentScene: 'start',
+    health: 100,
+    inventory: [],
+    clothing: [],
+    helmet: [],
+    weapon: [],
+    weightCapacity: 50,
+    currentWeight: 0
+};
+
+// Function to update the displayed stats
+function updateStats() {
+    $('#health-stat').text(gameState.health);
+    $('#inventory-stat').text(gameState.inventory.join(', ') || 'Empty');
+    $('#clothing-stat').text(gameState.clothing.join(', ') || 'Basic Clothes');
+    $('#helmet-stat').text(gameState.helmet.join(', ') || 'None');
+    $('#weapon-stat').text(gameState.weapon.join(', ') || 'None');
+}
+
+// Function to add an item to the inventory
+function addItemToInventory(item) {
+    if (gameState.currentWeight + item.weight <= gameState.weightCapacity) {
+        gameState.currentWeight += item.weight;
+        gameState[item.type].push(item.name);
+        updateStats();
+        return true;
+    }
+    return false;
+}
+
+// Function to check if the conditions for displaying a choice are met
+function checkChoiceConditions(choice) {
+    if (choice.conditions) {
+        for (const condition of choice.conditions) {
+            if (condition.type === 'inventory') {
+                if (!gameState.inventory.includes(condition.value)) {
+                    return false;
+                }
+            }
+            if (condition.type === 'clothing') {
+                if (!gameState.clothing.includes(condition.value)) {
+                    return false;
+                }
+            }
+            if (condition.type === 'weapon') {
+                if (!gameState.weapon.includes(condition.value)) {
+                    return false;
+                }
+            }
+        }
+    }
+    return true;
+}
+
+// Function to display the scene based on game state
+function displayScene(scene) {
+    $('#narrative-text').text(scene.narrative);
+    $('#choices-section').empty();
+
+    for (const choice of scene.choices) {
+        if (checkChoiceConditions(choice)) {
+            const choiceButton = $('<button class="btn btn-primary mb-2 mr-2"></button>');
+            choiceButton.text(choice.text);
+            choiceButton.click(() => {
+                if (choice.items) {
+                    for (const item of choice.items) {
+                        addItemToInventory(item);
+                    }
+                }
+
+                if (choice.effect) {
+                    gameState.health += choice.effect.health || 0;
+                }
+
+                displayScene(scene.nextScenes[choice.nextScene]);
+            });
+
+            $('#choices-section').append(choiceButton);
+        }
+    }
+
+    updateStats();
+}
+
+// Main function to start the game
+$(document).ready(() => {
     $.getJSON('story.json', function (data) {
-      // Initialize the game with the starting point
-      let currentPoint = 'start';
-  
-      // Function to update the game based on the current point
-      function updateGame() {
-        const pointData = data[currentPoint];
-  
-        // Update the narrative text
-        $('#narrative-text').text(pointData.text);
-  
-        // Update the choices
-        if (pointData.choices) {
-          $('#choice1-button').text(pointData.choices.choice1).show();
-          $('#choice2-button').text(pointData.choices.choice2).show();
-        } else {
-          $('#choice1-button').hide();
-          $('#choice2-button').hide();
-        }
-  
-        // Update the game status
-        if (pointData.status) {
-          $('#status-text').text('Status: ' + (pointData.status === 'won' ? 'You Won!' : 'You Lost!'));
-        } else {
-          $('#status-text').text('Status: Playing');
-        }
-      }
-  
-      // Initialize the game
-      updateGame();
-  
-      // Handle choice buttons
-      $('#choice1-button').click(function () {
-        currentPoint = data[currentPoint].next.choice1;
-        updateGame();
-      });
-      $('#choice2-button').click(function () {
-        currentPoint = data[currentPoint].next.choice2;
-        updateGame();
-      });
+        const story = data;
+
+        displayScene(story.scenes[gameState.currentScene]);
     });
-  });
-  
+});

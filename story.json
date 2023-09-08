@@ -1,48 +1,114 @@
 {
-    "start": {
-      "text": "Welcome to the High Seas! You are the captain of a pirate ship. What would you like to do?",
-      "choices": {
-        "choice1": "Search for Treasure",
-        "choice2": "Find a Ship to Plunder"
-      },
-      "next": {
-        "choice1": "treasure",
-        "choice2": "plunder"
-      }
-    },
-    "treasure": {
-      "text": "You set sail in search of treasure. You find an island with a big 'X' on the sand. What do you do?",
-      "choices": {
-        "choice1": "Dig",
-        "choice2": "Leave"
-      },
-      "next": {
-        "choice1": "win",
-        "choice2": "lose1"
-      }
-    },
-    "plunder": {
-      "text": "You find a merchant ship and prepare to board. They seem to have cannons. What's your move?",
-      "choices": {
-        "choice1": "Attack",
-        "choice2": "Retreat"
-      },
-      "next": {
-        "choice1": "lose2",
-        "choice2": "lose1"
-      }
-    },
-    "win": {
-      "text": "Congratulations, you found the treasure! You win!",
-      "status": "won"
-    },
-    "lose1": {
-      "text": "You decided it was too risky. Unfortunately, you find nothing and lose.",
-      "status": "lost"
-    },
-    "lose2": {
-      "text": "You were outgunned and the merchant ship sank your pirate ship. You lose.",
-      "status": "lost"
+    "scenes": {
+        "start": {
+            "narrative": "You find yourself in a locked room aboard a pirate ship.",
+            "choices": [
+                {
+                    "text": "Search the room",
+                    "nextScene": "findKey"
+                },
+                {
+                    "text": "Wait",
+                    "nextScene": "start"
+                }
+            ]
+        },
+        "findKey": {
+            "narrative": "You search the room and find a key!",
+            "choices": [
+                {
+                    "text": "Pick up the key",
+                    "items": [
+                        {
+                            "name": "Key",
+                            "type": "inventory",
+                            "weight": 1
+                        }
+                    ],
+                    "nextScene": "door"
+                }
+            ]
+        },
+        "door": {
+            "narrative": "You are at the door. It's locked.",
+            "choices": [
+                {
+                    "text": "Use the key",
+                    "conditions": [
+                        {
+                            "type": "inventory",
+                            "value": "Key"
+                        }
+                    ],
+                    "nextScene": "shipDeck"
+                },
+                {
+                    "text": "Wait",
+                    "nextScene": "door"
+                }
+            ]
+        },
+        "shipDeck": {
+            "narrative": "You have unlocked the door and find yourself on the ship's deck.",
+            "choices": [
+                {
+                    "text": "Put on pirate uniform",
+                    "items": [
+                        {
+                            "name": "Pirate Uniform",
+                            "type": "clothing",
+                            "weight": 5
+                        }
+                    ],
+                    "nextScene": "upperDeckEntrance"
+                },
+                {
+                    "text": "Go to the upper deck",
+                    "conditions": [
+                        {
+                            "type": "clothing",
+                            "value": "Pirate Uniform"
+                        }
+                    ],
+                    "nextScene": "upperDeck"
+                },
+                {
+                    "text": "Stay below",
+                    "nextScene": "shipDeck"
+                }
+            ]
+        },
+        "upperDeckEntrance": {
+            "narrative": "You are at the entrance to the upper deck.",
+            "choices": [
+                {
+                    "text": "Go to the upper deck",
+                    "conditions": [
+                        {
+                            "type": "clothing",
+                            "value": "Pirate Uniform"
+                        }
+                    ],
+                    "nextScene": "upperDeck"
+                },
+                {
+                    "text": "Stay below",
+                    "nextScene": "shipDeck"
+                }
+            ]
+        },
+        "upperDeck": {
+            "narrative": "You have made it to the upper deck.",
+            "choices": [
+                {
+                    "text": "Celebrate",
+                    "nextScene": "end"
+                }
+            ]
+        },
+        "end": {
+            "narrative": "Congratulations, you've won!",
+            "choices": []
+        }
     }
-  }
-  
+}

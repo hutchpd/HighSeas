@@ -4,11 +4,12 @@
     <meta charset="UTF-8">
     <title>High Seas</title>
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">    <!-- jQuery -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> 
+    <!-- Bootstrap and jQuery scripts -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
-    <!-- Custom JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-eMNCOe7tCILeBiRIF9ljj+K4F5w5g5ioaEDr9HlqnkGBzTqZodMjqG7qaJFmEZnO" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script src="game.js"></script>
-    <!-- Custom CSS (if needed) -->
     <link rel="stylesheet" href="game.css">
 </head>
 <body>
@@ -20,16 +21,45 @@
                 <div id="narrative-section" class="mb-4">
                     <p id="narrative-text" class="card-text">Welcome to the adventure!</p>
                 </div>
-                
-                <!-- Buttons for player choices -->
-                <div id="choices-section" class="d-flex justify-content-between mb-4">
-                    <button id="choice1-button" class="btn btn-primary">Choice 1</button>
-                    <button id="choice2-button" class="btn btn-primary">Choice 2</button>
+
+                <!-- Simplified Vital Stats -->
+                <div id="stats-section" class="mb-4">
+                    <h5>Vital Stats:</h5>
+                    <p>Health: <span id="health-stat">100</span></p>
+                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#statsModal">View Detailed Stats</button>
+                </div>
+
+                <!-- Container for dynamically added choice buttons -->
+                <div id="choices-section" class="d-flex flex-wrap justify-content-between mb-4">
+                    <!-- Choice buttons will be added here dynamically -->
                 </div>
 
                 <!-- Area to display the current status of the game -->
                 <div id="status-section">
                     <p id="status-text" class="font-weight-bold text-muted">Status: Playing</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Detailed Stats Modal -->
+        <div class="modal fade" id="statsModal" tabindex="-1" role="dialog" aria-labelledby="statsModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="statsModalLabel">Detailed Stats</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Inventory: <span id="inventory-stat">Empty</span></p>
+                        <p>Clothing: <span id="clothing-stat">Basic Clothes</span></p>
+                        <p>Helmet: <span id="helmet-stat">None</span></p>
+                        <p>Weapon: <span id="weapon-stat">None</span></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
                 </div>
             </div>
         </div>
