@@ -103,7 +103,7 @@ function displayScene(scene) {
                 gameState.health += choice.effect.health || 0;
             }
 
-            displayScene(scene.nextScenes[nextScene]);
+            displayScene(scene.scenes[nextScene]);
         });
 
         $('#choices-section').append(choiceButton);
