@@ -55,7 +55,7 @@ function checkChoiceConditions(choice) {
 }
 
 // Function to display the scene based on game state
-function displayScene(scene) {
+function displayScene(scene, story) {  // Added 'story' parameter
     $('#narrative-text').text(scene.narrative);
     $('#choices-section').empty();
 
@@ -74,7 +74,8 @@ function displayScene(scene) {
                     gameState.health += choice.effect.health || 0;
                 }
 
-                displayScene(scene.nextScenes[choice.nextScene]);
+                gameState.currentScene = choice.nextScene;  // Update current scene in game state
+                displayScene(story.scenes[gameState.currentScene], story);  // Use 'story.scenes[...]' to get the next scene
             });
 
             $('#choices-section').append(choiceButton);
@@ -89,6 +90,7 @@ $(document).ready(() => {
     $.getJSON('story.json', function (data) {
         const story = data;
 
-        displayScene(story.scenes[gameState.currentScene]);
+        gameState.currentScene = 'start';  // Initialize the starting scene in the game state
+        displayScene(story.scenes[gameState.currentScene], story);  // Start the game with the initial scene, pass 'story' as a parameter
     });
 });
