@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>High Seas</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+    <!-- Custom JavaScript -->
+    <script src="game.js"></script>
+    <!-- Custom CSS (if needed) -->
+    <link rel="stylesheet" href="game.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <!-- Main container for the game -->
+        <div id="game-container" class="card">
+            <div class="card-body">
+                <!-- Text area to display the game's narrative -->
+                <div id="narrative-section" class="mb-4">
+                    <p id="narrative-text" class="card-text">Welcome to the adventure!</p>
+                </div>
+                
+                <!-- Buttons for player choices -->
+                <div id="choices-section" class="d-flex justify-content-between mb-4">
+                    <button id="choice1-button" class="btn btn-primary">Choice 1</button>
+                    <button id="choice2-button" class="btn btn-primary">Choice 2</button>
+                </div>
+
+                <!-- Area to display the current status of the game -->
+                <div id="status-section">
+                    <p id="status-text" class="font-weight-bold text-muted">Status: Playing</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

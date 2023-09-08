@@ -1,0 +1,48 @@
+{
+    "start": {
+      "text": "Welcome to the High Seas! You are the captain of a pirate ship. What would you like to do?",
+      "choices": {
+        "choice1": "Search for Treasure",
+        "choice2": "Find a Ship to Plunder"
+      },
+      "next": {
+        "choice1": "treasure",
+        "choice2": "plunder"
+      }
+    },
+    "treasure": {
+      "text": "You set sail in search of treasure. You find an island with a big 'X' on the sand. What do you do?",
+      "choices": {
+        "choice1": "Dig",
+        "choice2": "Leave"
+      },
+      "next": {
+        "choice1": "win",
+        "choice2": "lose1"
+      }
+    },
+    "plunder": {
+      "text": "You find a merchant ship and prepare to board. They seem to have cannons. What's your move?",
+      "choices": {
+        "choice1": "Attack",
+        "choice2": "Retreat"
+      },
+      "next": {
+        "choice1": "lose2",
+        "choice2": "lose1"
+      }
+    },
+    "win": {
+      "text": "Congratulations, you found the treasure! You win!",
+      "status": "won"
+    },
+    "lose1": {
+      "text": "You decided it was too risky. Unfortunately, you find nothing and lose.",
+      "status": "lost"
+    },
+    "lose2": {
+      "text": "You were outgunned and the merchant ship sank your pirate ship. You lose.",
+      "status": "lost"
+    }
+  }
+  
