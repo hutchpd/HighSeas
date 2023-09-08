@@ -40,11 +40,21 @@
                             "value": "Key"
                         }
                     ],
-                    "nextScene": "shipDeck"
+                    "nextScene": "shipDeck",
+                    "alternateScene": "noKey"
                 },
                 {
                     "text": "Wait",
                     "nextScene": "door"
+                }
+            ]
+        },
+        "noKey": {
+            "narrative": "You don't have a key! You can't unlock the door.",
+            "choices": [
+                {
+                    "text": "Go back",
+                    "nextScene": "start"
                 }
             ]
         },
@@ -70,10 +80,20 @@
                             "value": "Pirate Uniform"
                         }
                     ],
-                    "nextScene": "upperDeck"
+                    "nextScene": "upperDeck",
+                    "alternateScene": "noUniform"
                 },
                 {
                     "text": "Stay below",
+                    "nextScene": "shipDeck"
+                }
+            ]
+        },
+        "noUniform": {
+            "narrative": "The captain sees you and yells, 'Get dressed first, matey!'",
+            "choices": [
+                {
+                    "text": "Go back",
                     "nextScene": "shipDeck"
                 }
             ]
