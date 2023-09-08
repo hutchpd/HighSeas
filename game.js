@@ -55,7 +55,7 @@ function checkChoiceConditions(choice) {
 }
 
 // Function to display the scene based on game state
-function displayScene(scene) {
+function displayScene(scene, story) {
     $('#narrative-text').text(scene.narrative);
     $('#choices-section').empty();
 
@@ -102,7 +102,7 @@ function displayScene(scene) {
                 gameState.health += choice.effect.health || 0;
             }
             gameState.currentScene = nextScene;
-            displayScene(story.scenes[nextScene]);
+            displayScene(story.scenes[nextScene], story);
         });
 
         $('#choices-section').append(choiceButton);
