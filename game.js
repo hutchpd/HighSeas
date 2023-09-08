@@ -55,31 +55,58 @@ function checkChoiceConditions(choice) {
 }
 
 // Function to display the scene based on game state
-function displayScene(scene, story) {  // Added 'story' parameter
+// Function to display the scene based on game state
+function displayScene(scene) {
     $('#narrative-text').text(scene.narrative);
     $('#choices-section').empty();
 
     for (const choice of scene.choices) {
-        if (checkChoiceConditions(choice)) {
-            const choiceButton = $('<button class="btn btn-primary mb-2 mr-2"></button>');
-            choiceButton.text(choice.text);
-            choiceButton.click(() => {
-                if (choice.items) {
-                    for (const item of choice.items) {
-                        addItemToInventory(item);
+        const choiceButton = $('<button class="btn btn-primary mb-2 mr-2"></button>');
+        choiceButton.text(choice.text);
+
+        choiceButton.click(() => {
+            let nextScene = choice.nextScene;
+
+            if (choice.conditions) {
+                let conditionMet = true;
+
+                for (const condition of choice.conditions) {
+                    if (condition.type === 'inventory') {
+                        if (!gameState.inventory.includes(condition.value)) {
+                            conditionMet = false;
+                        }
+                    }
+                    if (condition.type === 'clothing') {
+                        if (!gameState.clothing.includes(condition.value)) {
+                            conditionMet = false;
+                        }
+                    }
+                    if (condition.type === 'weapon') {
+                        if (!gameState.weapon.includes(condition.value)) {
+                            conditionMet = false;
+                        }
                     }
                 }
 
-                if (choice.effect) {
-                    gameState.health += choice.effect.health || 0;
+                if (!conditionMet && choice.alternateScene) {
+                    nextScene = choice.alternateScene;
                 }
+            }
 
-                gameState.currentScene = choice.nextScene;  // Update current scene in game state
-                displayScene(story.scenes[gameState.currentScene], story);  // Use 'story.scenes[...]' to get the next scene
-            });
+            if (choice.items) {
+                for (const item of choice.items) {
+                    addItemToInventory(item);
+                }
+            }
 
-            $('#choices-section').append(choiceButton);
-        }
+            if (choice.effect) {
+                gameState.health += choice.effect.health || 0;
+            }
+
+            displayScene(scene.nextScenes[nextScene]);
+        });
+
+        $('#choices-section').append(choiceButton);
     }
 
     updateStats();
