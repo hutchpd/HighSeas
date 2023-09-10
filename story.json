@@ -1,235 +1,565 @@
 {
     "scenes": {
-      "Captured": {
-        "narrative": "You awaken to the creaking and groaning of timbers, as if the very bones of the ship are engaged in a comedic dialogue with the sea. Your eyes adjust to the dim light filtering through the gaps in the wooden planks that form your makeshift cell. You're aboard the HMS Chuckle, a pirate ship infamous not for its plundering or pillaging, but for its peculiar penchant for puns, pranks, and all things preposterously funny. The air is thick with the smell of salt, sweat, and a hint of banana cream pie—likely from last night's dessert duel. Your cell is a veritable museum of comedy history, with graffiti jokes scrawled on the walls in various states of hilarity and legibility. A parrot, resplendent in its kaleidoscopic plumage, is perched on a wooden stand near the cell door. It eyes you with a mixture of curiosity and judgment, as if assessing whether you're worthy of its comedic wisdom. 'Polly wants a punchline!' it squawks, flapping its wings in a dramatic fashion that would make any Shakespearean actor green with envy.",
-        "choices": [
-          {
-            "text": "Stay in the cell and contemplate the meaning of life, or lack thereof.",
-            "nextScene": "BoredomLoop",
-            "alternateScene": null,
-            "items": [],
-            "conditions": []
-          },
-          {
-            "text": "Search for an escape route, perhaps behind that suspiciously out-of-place poster of a mermaid.",
-            "nextScene": "HotPants",
-            "alternateScene": null,
-            "items": [
+        "start": {
+            "narrative": "You awaken to the creaking and groaning of timbers, as if the very bones of the ship are engaged in a comedic dialogue with the sea. Your eyes adjust to the dim light filtering through the gaps in the wooden planks that form your makeshift cell. You're aboard the HMS Chuckle, a pirate ship infamous not for its plundering or pillaging, but for its peculiar penchant for puns, pranks, and all things preposterously funny. The air is thick with the smell of salt, sweat, and a hint of banana cream pie—likely from last night's dessert duel. Your cell is a veritable museum of comedy history, with graffiti jokes scrawled on the walls in various states of hilarity and legibility. A parrot, resplendent in its kaleidoscopic plumage, is perched on a wooden stand near the cell door. It eyes you with a mixture of curiosity and judgment, as if assessing whether you're worthy of its comedic wisdom. 'Polly wants a punchline!' it squawks, flapping its wings in a dramatic fashion that would make any Shakespearean actor green with envy.",
+            "choices": [
+                {
+                    "text": "Stay in the cell and contemplate the meaning of life, or lack thereof.",
+                    "nextScene": "BoredomLoop",
+                    "alternateScene": null,
+                    "items": [],
+                    "conditions": []
+                },
+                {
+                    "text": "Search for an escape route, perhaps behind that suspiciously out-of-place poster of a mermaid.",
+                    "nextScene": "HotPants",
+                    "alternateScene": null,
+                    "items": [
+                        {
+                            "name": "Hot Pants",
+                            "type": "Clothing",
+                            "weight": 2
+                        }
+                    ],
+                    "conditions": []
+                },
+                {
+                    "text": "Strike up a conversation with the parrot. Maybe it knows the secret to a good joke or the key to your cell.",
+                    "nextScene": "ParrotDialogue1",
+                    "alternateScene": null,
+                    "items": [],
+                    "conditions": []
+                }
+            ]
+        },
+        "ParrotDialogue1": {
+            "narrative": "You decide to engage the parrot in conversation. 'Alright, feathered friend, what's the word?' you ask. The parrot squawks, 'The word is absurd! Absurdly funny!'",
+            "choices": [
+                {
+                    "text": "Ask the parrot if it knows any good pirate jokes.",
+                    "nextScene": "ParrotJoke",
+                    "alternateScene": null,
+                    "items": [],
+                    "conditions": []
+                },
+                {
+                    "text": "Inquire about the key to your cell.",
+                    "nextScene": "ParrotKey",
+                    "alternateScene": null,
+                    "items": [],
+                    "conditions": []
+                },
+                {
+                    "text": "Challenge the parrot to a pun-off.",
+                    "nextScene": "ParrotPunOff",
+                    "alternateScene": null,
+                    "items": [],
+                    "conditions": []
+                }
+            ]
+        },
+        "ParrotJoke": {
+            "narrative": "The parrot puffs up its feathers and declares, 'Why did nobody want to play cards with the pirate? Because he was always standing on the deck!'",
+            "choices": [
+                {
+                    "text": "Laugh uproariously.",
+                    "nextScene": "ParrotClue",
+                    "alternateScene": null,
+                    "items": [],
+                    "conditions": [
+                        {
+                            "type": "Clue",
+                            "value": "ParrotWisdom"
+                        }
+                    ]
+                },
+                {
+                    "text": "Groan at the terrible joke.",
+                    "nextScene": "ParrotInsulted",
+                    "alternateScene": null,
+                    "items": [],
+                    "conditions": []
+                }
+            ]
+        },
+        "ParrotKey": {
+            "narrative": "You ask the parrot about the key to your cell. The parrot squawks, 'Key? Oh, you mean the thing that Captain Chuckle keeps under his feathered hat? Good luck getting that!'",
+            "choices": [
+                {
+                    "text": "Ask the parrot to steal the key for you.",
+                    "nextScene": "ParrotRefusal",
+                    "alternateScene": null,
+                    "items": [],
+                    "conditions": []
+                },
+                {
+                    "text": "Thank the parrot for the information.",
+                    "nextScene": "ParrotDialogue1",
+                    "alternateScene": null,
+                    "items": [],
+                    "conditions": [
+                        {
+                            "type": "Clue",
+                            "value": "KeyLocation"
+                        }
+                    ]
+                }
+            ]
+        },
+        "ParrotPunOff": {
+            "narrative": "You challenge the parrot to a pun-off. The parrot squawks excitedly, 'You're on! I'm the reigning featherweight champion of puns!'",
+            "choices": [
+                {
+                    "text": "Start with a pirate pun.",
+                    "nextScene": "ParrotPunResponse",
+                    "alternateScene": null,
+                    "items": [],
+                    "conditions": []
+                },
+                {
+                    "text": "Concede defeat.",
+                    "nextScene": "ParrotVictory",
+                    "alternateScene": null,
+                    "items": [],
+                    "conditions": []
+                }
+            ]
+        },
+        "ParrotRefusal": {
+            "narrative": "The parrot looks at you with disdain. 'Do I look like your personal thief? I have standards, you know!'",
+            "choices": [
+                {
+                    "text": "Apologize for the audacity.",
+                    "nextScene": "ParrotDialogue1",
+                    "alternateScene": null,
+                    "items": [],
+                    "conditions": []
+                },
+                {
+                    "text": "Insist that it's a matter of life and comedy.",
+                    "nextScene": "ParrotDialogue1",
+                    "alternateScene": null,
+                    "items": [],
+                    "conditions": []
+                }
+            ]
+        },
+        "ParrotPunResponse": {
+            "narrative": "You deliver your best pirate pun: 'Why did the pirate take up gardening? To get to the root of the problem!' The parrot squawks, 'Not bad, but can you beat this: Why did the pirate wear a paper towel? To soak up the high seas!'",
+            "choices": [
+                {
+                    "text": "Admit defeat.",
+                    "nextScene": "ParrotVictory",
+                    "alternateScene": null,
+                    "items": [],
+                    "conditions": []
+                },
+                {
+                    "text": "Counter with another pun.",
+                    "nextScene": "ParrotPunCounter",
+                    "alternateScene": null,
+                    "items": [],
+                    "conditions": []
+                }
+            ]
+        },
+        "ParrotVictory": {
+            "narrative": "You admit defeat and the parrot squawks triumphantly, 'I knew you'd crack-er under pressure!'",
+            "choices": [
+                {
+                    "text": "Laugh at the parrot's pun.",
+                    "nextScene": "ParrotDialogue1",
+                    "alternateScene": null,
+                    "items": [],
+                    "conditions": []
+                },
+                {
+                    "text": "Roll your eyes and move on.",
+                    "nextScene": "Captured",
+                    "alternateScene": null,
+                    "items": [],
+                    "conditions": []
+                }
+            ]
+        },
+        "ParrotPunCounter": {
+            "narrative": "You counter with another pun: 'Why did the pirate get kicked out of the movie theater? Because he was rated arrrr!' The parrot squawks, 'Nice try, but listen to this: Why did the pirate become an astronaut? To explore the high seas-celestial bodies!'",
+            "choices": [
+                {
+                    "text": "Admit defeat again.",
+                    "nextScene": "ParrotVictory",
+                    "alternateScene": null,
+                    "items": [],
+                    "conditions": []
+                },
+                {
+                    "text": "Counter with yet another pun.",
+                    "nextScene": "ParrotPunFinal",
+                    "alternateScene": null,
+                    "items": [],
+                    "conditions": []
+                }
+            ]
+        },
+        "ParrotPunFinal": {
+            "narrative": "You give it one last shot: 'Why did the pirate refuse to eat the ship's biscuits? Because he was a-gluten for punishment!' The parrot pauses, then squawks, 'You win, you win! That was a cracker of a joke!'",
+            "choices": [
+                {
+                    "text": "Celebrate your pun victory.",
+                    "nextScene": "Captured",
+                    "alternateScene": null,
+                    "items": [],
+                    "conditions": [
+                        {
+                            "type": "Clue",
+                            "value": "PunMaster"
+                        }
+                    ]
+                },
+                {
+                    "text": "Thank the parrot graciously.",
+                    "nextScene": "ParrotDialogue1",
+                    "alternateScene": null,
+                    "items": [],
+                    "conditions": [
+                        {
+                            "type": "Clue",
+                            "value": "PunMaster"
+                        }
+                    ]
+                }
+            ]
+        },
+        "HotPants": {
+            "narrative": "As you tiptoe through the labyrinthine corridors of the HMS Chuckle, avoiding banana peels and whoopee cushions strategically placed by the crew, you stumble upon a curious sight. Nestled between a treasure chest filled with rubber chickens and a barrel of 'Grade A Pirate Grog' (which, upon closer inspection, appears to be mostly root beer and glitter), you find a pair of pants. But these aren't just any pants; they're 'hot pants,' glowing with an ethereal light as if enchanted by a fashion-forward wizard or a disco-loving genie. The pants are a kaleidoscope of colors, shimmering and sparkling as if they were woven from the very fabric of a Saturday night fever dream. They're adorned with sequins, feathers, and what appears to be tiny, embroidered treasure maps. A tag on the inside reads, 'One size fits all, but not all fit the style.' You can't help but feel that these pants hold great power—either the power to make you the life of the pirate party or the power to make you the laughingstock of the Seven Silly Seas. The air grows thick with anticipation, and even the ship itself seems to hold its breath (or whatever the nautical equivalent is).",
+            "choices": [
+                {
+                    "text": "Embrace your inner diva and put on the hot pants.",
+                    "nextScene": "PopularPirate",
+                    "alternateScene": null,
+                    "items": [
+                        {
+                            "name": "Hot Pants",
+                            "type": "Clothing",
+                            "weight": 0
+                        }
+                    ],
+                    "conditions": [
+                        {
+                            "type": "Charisma",
+                            "value": "Increase"
+                        }
+                    ]
+                },
+                {
+                    "text": "Exercise caution and keep the hot pants for a potential trade.",
+                    "nextScene": "CautiousPirate",
+                    "alternateScene": null,
+                    "items": [
+                        {
+                            "name": "Hot Pants",
+                            "type": "Tradeable",
+                            "weight": 2
+                        }
+                    ],
+                    "conditions": [
+                        {
+                            "type": "Charisma",
+                            "value": "Decrease"
+                        }
+                    ]
+                }
+            ]
+        },
+        "RiddleOfRum": {
+            "narrative": "Having navigated the sartorial seas of 'Hot Pants,' you find yourself standing before the grandiose 'Door of Chuckles,' an intricately carved wooden door that serves as the gateway to the ship's treasure chamber. The door is adorned with comical faces, each more exaggerated than the last, and you swear you can hear faint giggles emanating from the woodwork. Above the door, inscribed in golden letters that seem to dance in the flickering torchlight, is a riddle: 'What's a pirate's favorite letter? Solve me, or forever be a landlubber!' The atmosphere is thick with tension, or perhaps it's just the lingering scent of spiced rum in the air. Either way, you feel the weight of the crew's expectations on your shoulders. They're all watching, some with bated breath, others with tankards of grog in hand, ready to toast your success or drown their sorrows in your failure. Nearby, the parrot from your cell flutters onto a barrel, eyeing you knowingly. It squawks, 'Ah, the Riddle of Rum! A classic conundrum that's puzzled pirates for generations. Need a hint, savvy?'",
+            "choices": [
+                {
+                    "text": "Attempt to solve the riddle yourself.",
+                    "nextScene": "EarnedRespect",
+                    "alternateScene": null,
+                    "items": [],
+                    "conditions": [
+                        {
+                            "type": "Respect",
+                            "value": "Increase"
+                        }
+                    ]
+                },
+                {
+                    "text": "Seek help from the parrot.",
+                    "nextScene": "OweParrot",
+                    "alternateScene": null,
+                    "items": [],
+                    "conditions": [
+                        {
+                            "type": "Favor",
+                            "value": "OweParrot"
+                        }
+                    ]
+                },
+                {
+                    "text": "Consult the crew for a hint.",
+                    "nextScene": "ConsultCrew",
+                    "alternateScene": null,
+                    "items": [],
+                    "conditions": []
+                },
+                {
+                    "text": "Inspect the comical faces on the door.",
+                    "nextScene": "InspectDoor",
+                    "alternateScene": null,
+                    "items": [],
+                    "conditions": []
+                },
+                {
+                    "text": "Take a sip of rum from the barrel next to the door.",
+                    "nextScene": "SipOfRum",
+                    "alternateScene": null,
+                    "items": [],
+                    "conditions": []
+                }
+            ]
+        },
+        "EarnedRespect": {
+            "narrative": "You boldly shout, 'The pirate's favorite letter is R, but his true love is the C!' The door creaks open, and the crew erupts in cheers. You've earned their respect and perhaps a shot of the Captain's finest rum.",
+            "choices": [
+                {
+                    "text": "Take a bow and proceed.",
+                    "nextScene": "NextMajorScene",
+                    "alternateScene": null,
+                    "items": [],
+                    "conditions": []
+                },
+                {
+                    "text": "Politely decline the rum and move on.",
+                    "nextScene": "NextMajorScene",
+                    "alternateScene": null,
+                    "items": [],
+                    "conditions": []
+                }
+            ]
+        },
+        "OweParrot": {
+            "narrative": "The parrot squawks, 'The answer is R, but a pirate's true love is the C!' The door opens, but now you owe the parrot a favor. What could possibly go wrong?",
+            "choices": [
+                {
+                    "text": "Thank the parrot and proceed cautiously.",
+                    "nextScene": "NextMajorScene",
+                    "alternateScene": null,
+                    "items": [],
+                    "conditions": []
+                },
+                {
+                    "text": "Ignore the parrot and walk through the door.",
+                    "nextScene": "NextMajorScene",
+                    "alternateScene": null,
+                    "items": [],
+                    "conditions": []
+                }
+            ]
+        },
+        "ConsultCrew": {
+            "narrative": "You approach a lanky pirate with a pet iguana. He whispers the answer in exchange for a joke. Now armed with the answer, you feel more confident.",
+            "choices": [
+                {
+                    "text": "Solve the riddle with your newfound knowledge.",
+                    "nextScene": "EarnedRespect",
+                    "alternateScene": null,
+                    "items": [],
+                    "conditions": []
+                },
+                {
+                    "text": "Change your mind and consult the parrot.",
+                    "nextScene": "OweParrot",
+                    "alternateScene": null,
+                    "items": [],
+                    "conditions": []
+                }
+            ]
+        },
+        "InspectDoor": {
+            "narrative": "Upon closer inspection, you notice that one of the comical faces on the door has a loose eye. You press it, and a compartment opens, revealing a small clue to the riddle.",
+            "choices": [
+                {
+                    "text": "Use the clue to solve the riddle.",
+                    "nextScene": "EarnedRespect",
+                    "alternateScene": null,
+                    "items": [],
+                    "conditions": []
+                },
+                {
+                    "text": "Ignore the clue and proceed as you were.",
+                    "nextScene": "RiddleOfRum",
+                    "alternateScene": null,
+                    "items": [],
+                    "conditions": []
+                }
+            ]
+        },
+        "SipOfRum": {
+            "narrative": "You take a hearty sip of rum from the barrel. The world becomes slightly fuzzy, but you feel emboldened.",
+            "choices": [
+                {
+                    "text": "Attempt to solve the riddle in your emboldened state.",
+                    "nextScene": "EarnedRespect",
+                    "alternateScene": null,
+                    "items": [],
+                    "conditions": []
+                },
+                {
+                    "text": "Decide it's better to consult the parrot now.",
+                    "nextScene": "OweParrot",
+                    "alternateScene": null,
+                    "items": [],
+                    "conditions": []
+                }
+            ]
+        },     "TreasureHunt": {
+            "narrative": "The 'Door of Chuckles' creaks open, revealing a chamber filled with a hodgepodge of treasures—gold doubloons, bejeweled goblets, and an inexplicable collection of rubber duckies. But what catches your eye is a weathered parchment lying atop a velvet cushion, as if begging for attention. It's a treasure map, complete with cryptic symbols, dotted trails, and a large 'X' marking what you can only assume is a spot of great importance. The crew gathers around, their eyes wide with a mixture of greed and curiosity. The Captain, a burly pirate with a penchant for puns, announces, 'Arrr, me hearties! This be our next grand adventure! Who's with me?' The parrot, perched on a chandelier, squawks, 'A map! A map! But beware, for not all that glitters is gold—or even plastic!'",
+            "choices": [
               {
-                "name": "Hot Pants",
-                "type": "Clothing",
-                "weight": 2
-              }
-            ],
-            "conditions": []
-          },
-          {
-            "text": "Strike up a conversation with the parrot. Maybe it knows the secret to a good joke or the key to your cell.",
-            "nextScene": "ParrotDialogue1",
-            "alternateScene": null,
-            "items": [],
-            "conditions": []
-          }
-        ]
-      },
-      "ParrotDialogue1": {
-        "narrative": "You decide to engage the parrot in conversation. 'Alright, feathered friend, what's the word?' you ask. The parrot squawks, 'The word is absurd! Absurdly funny!'",
-        "choices": [
-          {
-            "text": "Ask the parrot if it knows any good pirate jokes.",
-            "nextScene": "ParrotJoke",
-            "alternateScene": null,
-            "items": [],
-            "conditions": []
-          },
-          {
-            "text": "Inquire about the key to your cell.",
-            "nextScene": "ParrotKey",
-            "alternateScene": null,
-            "items": [],
-            "conditions": []
-          },
-          {
-            "text": "Challenge the parrot to a pun-off.",
-            "nextScene": "ParrotPunOff",
-            "alternateScene": null,
-            "items": [],
-            "conditions": []
-          }
-        ]
-      },
-      "ParrotJoke": {
-        "narrative": "The parrot puffs up its feathers and declares, 'Why did nobody want to play cards with the pirate? Because he was always standing on the deck!'",
-        "choices": [
-          {
-            "text": "Laugh uproariously.",
-            "nextScene": "ParrotClue",
-            "alternateScene": null,
-            "items": [],
-            "conditions": [
+                "text": "Join the Captain and follow the map.",
+                "nextScene": "TreasureAndDanger",
+                "alternateScene": null,
+                "items": [],
+                "conditions": []
+              },
               {
-                "type": "Clue",
-                "value": "ParrotWisdom"
+                "text": "Sabotage the map for a humorous outcome.",
+                "nextScene": "PlasticSpork",
+                "alternateScene": null,
+                "items": [],
+                "conditions": []
+              },
+              {
+                "text": "Consult the parrot for cryptic wisdom.",
+                "nextScene": "ParrotWisdom",
+                "alternateScene": null,
+                "items": [],
+                "conditions": []
+              },
+              {
+                "text": "Examine the mysterious symbols on the map.",
+                "nextScene": "ExamineSymbols",
+                "alternateScene": null,
+                "items": [],
+                "conditions": []
+              },
+              {
+                "text": "Ask for the crew's opinions on the treasure hunt.",
+                "nextScene": "CrewOpinions",
+                "alternateScene": null,
+                "items": [],
+                "conditions": []
+              },
+              {
+                "text": "Pocket a rubber ducky from the treasure chamber.",
+                "nextScene": "RubberDucky",
+                "alternateScene": null,
+                "items": [
+                  {
+                    "name": "Rubber Ducky",
+                    "type": "Miscellaneous",
+                    "weight": 1
+                  }
+                ],
+                "conditions": []
               }
             ]
           },
-          {
-            "text": "Groan at the terrible joke.",
-            "nextScene": "ParrotInsulted",
-            "alternateScene": null,
-            "items": [],
-            "conditions": []
-          }
-        ]
-      },
-      "ParrotKey": {
-        "narrative": "You ask the parrot about the key to your cell. The parrot squawks, 'Key? Oh, you mean the thing that Captain Chuckle keeps under his feathered hat? Good luck getting that!'",
-        "choices": [
-          {
-            "text": "Ask the parrot to steal the key for you.",
-            "nextScene": "ParrotRefusal",
-            "alternateScene": null,
-            "items": [],
-            "conditions": []
-          },
-          {
-            "text": "Thank the parrot for the information.",
-            "nextScene": "ParrotDialogue1",
-            "alternateScene": null,
-            "items": [],
-            "conditions": [
+          "TreasureAndDanger": {
+            "narrative": "You join the Captain and the crew on a perilous journey, following the map's dotted trail. After dodging booby traps and solving riddles, you find a chest of glittering treasures—but also awaken a guardian sea monster!",
+            "choices": [
               {
-                "type": "Clue",
-                "value": "KeyLocation"
-              }
-            ]
-          }
-        ]
-      },
-      "ParrotPunOff": {
-        "narrative": "You challenge the parrot to a pun-off. The parrot squawks excitedly, 'You're on! I'm the reigning featherweight champion of puns!'",
-        "choices": [
-          {
-            "text": "Start with a pirate pun.",
-            "nextScene": "ParrotPunResponse",
-            "alternateScene": null,
-            "items": [],
-            "conditions": []
-          },
-          {
-            "text": "Concede defeat.",
-            "nextScene": "ParrotVictory",
-            "alternateScene": null,
-            "items": [],
-            "conditions": []
-          }
-        ]
-      },
-      "ParrotRefusal": {
-        "narrative": "The parrot looks at you with disdain. 'Do I look like your personal thief? I have standards, you know!'",
-        "choices": [
-          {
-            "text": "Apologize for the audacity.",
-            "nextScene": "ParrotDialogue1",
-            "alternateScene": null,
-            "items": [],
-            "conditions": []
-          },
-          {
-            "text": "Insist that it's a matter of life and comedy.",
-            "nextScene": "ParrotDialogue1",
-            "alternateScene": null,
-            "items": [],
-            "conditions": []
-          }
-        ]
-      },
-      "ParrotPunResponse": {
-        "narrative": "You deliver your best pirate pun: 'Why did the pirate take up gardening? To get to the root of the problem!' The parrot squawks, 'Not bad, but can you beat this: Why did the pirate wear a paper towel? To soak up the high seas!'",
-        "choices": [
-          {
-            "text": "Admit defeat.",
-            "nextScene": "ParrotVictory",
-            "alternateScene": null,
-            "items": [],
-            "conditions": []
-          },
-          {
-            "text": "Counter with another pun.",
-            "nextScene": "ParrotPunCounter",
-            "alternateScene": null,
-            "items": [],
-            "conditions": []
-          }
-        ]
-      },
-      "ParrotVictory": {
-        "narrative": "You admit defeat and the parrot squawks triumphantly, 'I knew you'd crack-er under pressure!'",
-        "choices": [
-          {
-            "text": "Laugh at the parrot's pun.",
-            "nextScene": "ParrotDialogue1",
-            "alternateScene": null,
-            "items": [],
-            "conditions": []
-          },
-          {
-            "text": "Roll your eyes and move on.",
-            "nextScene": "Captured",
-            "alternateScene": null,
-            "items": [],
-            "conditions": []
-          }
-        ]
-      },
-      "ParrotPunCounter": {
-        "narrative": "You counter with another pun: 'Why did the pirate get kicked out of the movie theater? Because he was rated arrrr!' The parrot squawks, 'Nice try, but listen to this: Why did the pirate become an astronaut? To explore the high seas-celestial bodies!'",
-        "choices": [
-          {
-            "text": "Admit defeat again.",
-            "nextScene": "ParrotVictory",
-            "alternateScene": null,
-            "items": [],
-            "conditions": []
-          },
-          {
-            "text": "Counter with yet another pun.",
-            "nextScene": "ParrotPunFinal",
-            "alternateScene": null,
-            "items": [],
-            "conditions": []
-          }
-        ]
-      },
-      "ParrotPunFinal": {
-        "narrative": "You give it one last shot: 'Why did the pirate refuse to eat the ship's biscuits? Because he was a-gluten for punishment!' The parrot pauses, then squawks, 'You win, you win! That was a cracker of a joke!'",
-        "choices": [
-          {
-            "text": "Celebrate your pun victory.",
-            "nextScene": "Captured",
-            "alternateScene": null,
-            "items": [],
-            "conditions": [
+                "text": "Fight the sea monster.",
+                "nextScene": "MonsterBattle",
+                "alternateScene": null,
+                "items": [],
+                "conditions": []
+              },
               {
-                "type": "Clue",
-                "value": "PunMaster"
+                "text": "Try to negotiate with the sea monster.",
+                "nextScene": "MonsterNegotiation",
+                "alternateScene": null,
+                "items": [],
+                "conditions": []
               }
             ]
           },
-          {
-            "text": "Thank the parrot graciously.",
-            "nextScene": "ParrotDialogue1",
-            "alternateScene": null,
-            "items": [],
-            "conditions": [
+          "PlasticSpork": {
+            "narrative": "Your sabotage works perfectly. The crew digs at the 'X' and finds a plastic spork. The Captain can't help but laugh, 'Arrr, this be the silliest treasure hunt ever!'",
+            "choices": [
               {
-                "type": "Clue",
-                "value": "PunMaster"
+                "text": "Join in the laughter.",
+                "nextScene": "NextMajorScene",
+                "alternateScene": null,
+                "items": [],
+                "conditions": []
+              },
+              {
+                "text": "Pretend to be as surprised as everyone else.",
+                "nextScene": "NextMajorScene",
+                "alternateScene": null,
+                "items": [],
+                "conditions": []
+              }
+            ]
+          },
+          "ParrotWisdom": {
+            "narrative": "The parrot squawks, 'Maps can be deceiving, just like a pirate's promise!' It's cryptic but makes you ponder the risks and rewards.",
+            "choices": [
+              {
+                "text": "Thank the parrot and make your decision.",
+                "nextScene": "TreasureHunt",
+                "alternateScene": null,
+                "items": [],
+                "conditions": []
+              }
+            ]
+          },
+          "ExamineSymbols": {
+            "narrative": "You scrutinize the symbols and realize they're ancient pirate emojis. They hint at both great wealth and potential danger.",
+            "choices": [
+              {
+                "text": "Proceed with caution.",
+                "nextScene": "TreasureAndDanger",
+                "alternateScene": null,
+                "items": [],
+                "conditions": []
+              },
+              {
+                "text": "Decide it's too risky and opt for sabotage.",
+                "nextScene": "PlasticSpork",
+                "alternateScene": null,
+                "items": [],
+                "conditions": []
+              }
+            ]
+          },
+          "CrewOpinions": {
+            "narrative": "The crew is divided. Some are eager for adventure, while others are skeptical. One pirate even suggests it might be a map to a fast-food joint.",
+            "choices": [
+              {
+                "text": "Take the crew's opinions into account and decide.",
+                "nextScene": "TreasureHunt",
+                "alternateScene": null,
+                "items": [],
+                "conditions": []
+              }
+            ]
+          },
+          "RubberDucky": {
+            "narrative": "You pocket a rubber ducky from the chamber. It squeaks delightfully, and you can't help but feel that this whimsical item will come in handy—or at least provide comic relief.",
+            "choices": [
+              {
+                "text": "Proceed with your newfound treasure.",
+                "nextScene": "TreasureHunt",
+                "alternateScene": null,
+                "items": [],
+                "conditions": []
               }
             ]
           }
-        ]
-      }  
     }
-  }
-  
+}
