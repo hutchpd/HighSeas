@@ -1,13 +1,14 @@
 // Initial game state
 let gameState = {
-    currentScene: 'start',
+    currentscene: 'start',  // Lowercase
     health: 100,
     inventory: [],
     clothing: [],
     helmet: [],
     weapon: [],
-    weightCapacity: 50,
-    currentWeight: 0
+    weightcapacity: 50,  // Lowercase
+    currentweight: 0,  // Lowercase
+    clue: []
 };
 
 // Function to update the displayed stats
@@ -21,9 +22,10 @@ function updateStats() {
 
 // Function to add an item to the inventory
 function addItemToInventory(item) {
+    const itemTypeLower = item.type.toLowerCase();  // Convert to lowercase
     if (gameState.currentWeight + item.weight <= gameState.weightCapacity) {
         gameState.currentWeight += item.weight;
-        gameState[item.type].push(item.name);
+        gameState[itemTypeLower].push(item.name);  // Use the lowercase version
         updateStats();
         return true;
     }
@@ -34,25 +36,15 @@ function addItemToInventory(item) {
 function checkChoiceConditions(choice) {
     if (choice.conditions) {
         for (const condition of choice.conditions) {
-            if (condition.type === 'inventory') {
-                if (!gameState.inventory.includes(condition.value)) {
-                    return false;
-                }
-            }
-            if (condition.type === 'clothing') {
-                if (!gameState.clothing.includes(condition.value)) {
-                    return false;
-                }
-            }
-            if (condition.type === 'weapon') {
-                if (!gameState.weapon.includes(condition.value)) {
-                    return false;
-                }
+            const conditionTypeLower = condition.type.toLowerCase();  // Convert to lowercase
+            if (!gameState[conditionTypeLower].includes(condition.value)) {  // Use the lowercase version
+                return false;
             }
         }
     }
     return true;
 }
+
 
 // Function to display the scene based on game state
 function displayScene(scene, story) {
