@@ -1,134 +1,235 @@
 {
     "scenes": {
-        "start": {
-            "narrative": "You find yourself in a locked room aboard a pirate ship.",
-            "choices": [
-                {
-                    "text": "Search the room",
-                    "nextScene": "findKey"
-                },
-                {
-                    "text": "Wait",
-                    "nextScene": "start"
-                }
+      "Captured": {
+        "narrative": "You awaken to the creaking and groaning of timbers, as if the very bones of the ship are engaged in a comedic dialogue with the sea. Your eyes adjust to the dim light filtering through the gaps in the wooden planks that form your makeshift cell. You're aboard the HMS Chuckle, a pirate ship infamous not for its plundering or pillaging, but for its peculiar penchant for puns, pranks, and all things preposterously funny. The air is thick with the smell of salt, sweat, and a hint of banana cream pie—likely from last night's dessert duel. Your cell is a veritable museum of comedy history, with graffiti jokes scrawled on the walls in various states of hilarity and legibility. A parrot, resplendent in its kaleidoscopic plumage, is perched on a wooden stand near the cell door. It eyes you with a mixture of curiosity and judgment, as if assessing whether you're worthy of its comedic wisdom. 'Polly wants a punchline!' it squawks, flapping its wings in a dramatic fashion that would make any Shakespearean actor green with envy.",
+        "choices": [
+          {
+            "text": "Stay in the cell and contemplate the meaning of life, or lack thereof.",
+            "nextScene": "BoredomLoop",
+            "alternateScene": null,
+            "items": [],
+            "conditions": []
+          },
+          {
+            "text": "Search for an escape route, perhaps behind that suspiciously out-of-place poster of a mermaid.",
+            "nextScene": "HotPants",
+            "alternateScene": null,
+            "items": [
+              {
+                "name": "Hot Pants",
+                "type": "Clothing",
+                "weight": 2
+              }
+            ],
+            "conditions": []
+          },
+          {
+            "text": "Strike up a conversation with the parrot. Maybe it knows the secret to a good joke or the key to your cell.",
+            "nextScene": "ParrotDialogue1",
+            "alternateScene": null,
+            "items": [],
+            "conditions": []
+          }
+        ]
+      },
+      "ParrotDialogue1": {
+        "narrative": "You decide to engage the parrot in conversation. 'Alright, feathered friend, what's the word?' you ask. The parrot squawks, 'The word is absurd! Absurdly funny!'",
+        "choices": [
+          {
+            "text": "Ask the parrot if it knows any good pirate jokes.",
+            "nextScene": "ParrotJoke",
+            "alternateScene": null,
+            "items": [],
+            "conditions": []
+          },
+          {
+            "text": "Inquire about the key to your cell.",
+            "nextScene": "ParrotKey",
+            "alternateScene": null,
+            "items": [],
+            "conditions": []
+          },
+          {
+            "text": "Challenge the parrot to a pun-off.",
+            "nextScene": "ParrotPunOff",
+            "alternateScene": null,
+            "items": [],
+            "conditions": []
+          }
+        ]
+      },
+      "ParrotJoke": {
+        "narrative": "The parrot puffs up its feathers and declares, 'Why did nobody want to play cards with the pirate? Because he was always standing on the deck!'",
+        "choices": [
+          {
+            "text": "Laugh uproariously.",
+            "nextScene": "ParrotClue",
+            "alternateScene": null,
+            "items": [],
+            "conditions": [
+              {
+                "type": "Clue",
+                "value": "ParrotWisdom"
+              }
             ]
-        },
-        "findKey": {
-            "narrative": "You search the room and find a key!",
-            "choices": [
-                {
-                    "text": "Pick up the key",
-                    "items": [
-                        {
-                            "name": "Key",
-                            "type": "inventory",
-                            "weight": 1
-                        }
-                    ],
-                    "nextScene": "door"
-                }
+          },
+          {
+            "text": "Groan at the terrible joke.",
+            "nextScene": "ParrotInsulted",
+            "alternateScene": null,
+            "items": [],
+            "conditions": []
+          }
+        ]
+      },
+      "ParrotKey": {
+        "narrative": "You ask the parrot about the key to your cell. The parrot squawks, 'Key? Oh, you mean the thing that Captain Chuckle keeps under his feathered hat? Good luck getting that!'",
+        "choices": [
+          {
+            "text": "Ask the parrot to steal the key for you.",
+            "nextScene": "ParrotRefusal",
+            "alternateScene": null,
+            "items": [],
+            "conditions": []
+          },
+          {
+            "text": "Thank the parrot for the information.",
+            "nextScene": "ParrotDialogue1",
+            "alternateScene": null,
+            "items": [],
+            "conditions": [
+              {
+                "type": "Clue",
+                "value": "KeyLocation"
+              }
             ]
-        },
-        "door": {
-            "narrative": "You are at the door. It's locked.",
-            "choices": [
-                {
-                    "text": "Use the key",
-                    "conditions": [
-                        {
-                            "type": "inventory",
-                            "value": "Key"
-                        }
-                    ],
-                    "nextScene": "shipDeck",
-                    "alternateScene": "noKey"
-                },
-                {
-                    "text": "Wait",
-                    "nextScene": "door"
-                }
+          }
+        ]
+      },
+      "ParrotPunOff": {
+        "narrative": "You challenge the parrot to a pun-off. The parrot squawks excitedly, 'You're on! I'm the reigning featherweight champion of puns!'",
+        "choices": [
+          {
+            "text": "Start with a pirate pun.",
+            "nextScene": "ParrotPunResponse",
+            "alternateScene": null,
+            "items": [],
+            "conditions": []
+          },
+          {
+            "text": "Concede defeat.",
+            "nextScene": "ParrotVictory",
+            "alternateScene": null,
+            "items": [],
+            "conditions": []
+          }
+        ]
+      },
+      "ParrotRefusal": {
+        "narrative": "The parrot looks at you with disdain. 'Do I look like your personal thief? I have standards, you know!'",
+        "choices": [
+          {
+            "text": "Apologize for the audacity.",
+            "nextScene": "ParrotDialogue1",
+            "alternateScene": null,
+            "items": [],
+            "conditions": []
+          },
+          {
+            "text": "Insist that it's a matter of life and comedy.",
+            "nextScene": "ParrotDialogue1",
+            "alternateScene": null,
+            "items": [],
+            "conditions": []
+          }
+        ]
+      },
+      "ParrotPunResponse": {
+        "narrative": "You deliver your best pirate pun: 'Why did the pirate take up gardening? To get to the root of the problem!' The parrot squawks, 'Not bad, but can you beat this: Why did the pirate wear a paper towel? To soak up the high seas!'",
+        "choices": [
+          {
+            "text": "Admit defeat.",
+            "nextScene": "ParrotVictory",
+            "alternateScene": null,
+            "items": [],
+            "conditions": []
+          },
+          {
+            "text": "Counter with another pun.",
+            "nextScene": "ParrotPunCounter",
+            "alternateScene": null,
+            "items": [],
+            "conditions": []
+          }
+        ]
+      },
+      "ParrotVictory": {
+        "narrative": "You admit defeat and the parrot squawks triumphantly, 'I knew you'd crack-er under pressure!'",
+        "choices": [
+          {
+            "text": "Laugh at the parrot's pun.",
+            "nextScene": "ParrotDialogue1",
+            "alternateScene": null,
+            "items": [],
+            "conditions": []
+          },
+          {
+            "text": "Roll your eyes and move on.",
+            "nextScene": "Captured",
+            "alternateScene": null,
+            "items": [],
+            "conditions": []
+          }
+        ]
+      },
+      "ParrotPunCounter": {
+        "narrative": "You counter with another pun: 'Why did the pirate get kicked out of the movie theater? Because he was rated arrrr!' The parrot squawks, 'Nice try, but listen to this: Why did the pirate become an astronaut? To explore the high seas-celestial bodies!'",
+        "choices": [
+          {
+            "text": "Admit defeat again.",
+            "nextScene": "ParrotVictory",
+            "alternateScene": null,
+            "items": [],
+            "conditions": []
+          },
+          {
+            "text": "Counter with yet another pun.",
+            "nextScene": "ParrotPunFinal",
+            "alternateScene": null,
+            "items": [],
+            "conditions": []
+          }
+        ]
+      },
+      "ParrotPunFinal": {
+        "narrative": "You give it one last shot: 'Why did the pirate refuse to eat the ship's biscuits? Because he was a-gluten for punishment!' The parrot pauses, then squawks, 'You win, you win! That was a cracker of a joke!'",
+        "choices": [
+          {
+            "text": "Celebrate your pun victory.",
+            "nextScene": "Captured",
+            "alternateScene": null,
+            "items": [],
+            "conditions": [
+              {
+                "type": "Clue",
+                "value": "PunMaster"
+              }
             ]
-        },
-        "noKey": {
-            "narrative": "You don't have a key! You can't unlock the door.",
-            "choices": [
-                {
-                    "text": "Go back",
-                    "nextScene": "start"
-                }
+          },
+          {
+            "text": "Thank the parrot graciously.",
+            "nextScene": "ParrotDialogue1",
+            "alternateScene": null,
+            "items": [],
+            "conditions": [
+              {
+                "type": "Clue",
+                "value": "PunMaster"
+              }
             ]
-        },
-        "shipDeck": {
-            "narrative": "You have unlocked the door and find yourself on the ship's deck.",
-            "choices": [
-                {
-                    "text": "Put on pirate uniform",
-                    "items": [
-                        {
-                            "name": "Pirate Uniform",
-                            "type": "clothing",
-                            "weight": 5
-                        }
-                    ],
-                    "nextScene": "upperDeckEntrance"
-                },
-                {
-                    "text": "Go to the upper deck",
-                    "conditions": [
-                        {
-                            "type": "clothing",
-                            "value": "Pirate Uniform"
-                        }
-                    ],
-                    "nextScene": "upperDeck",
-                    "alternateScene": "noUniform"
-                },
-                {
-                    "text": "Stay below",
-                    "nextScene": "shipDeck"
-                }
-            ]
-        },
-        "noUniform": {
-            "narrative": "The captain sees you and yells, 'Get dressed first, matey!'",
-            "choices": [
-                {
-                    "text": "Go back",
-                    "nextScene": "shipDeck"
-                }
-            ]
-        },
-        "upperDeckEntrance": {
-            "narrative": "You are at the entrance to the upper deck.",
-            "choices": [
-                {
-                    "text": "Go to the upper deck",
-                    "conditions": [
-                        {
-                            "type": "clothing",
-                            "value": "Pirate Uniform"
-                        }
-                    ],
-                    "nextScene": "upperDeck"
-                },
-                {
-                    "text": "Stay below",
-                    "nextScene": "shipDeck"
-                }
-            ]
-        },
-        "upperDeck": {
-            "narrative": "You have made it to the upper deck.",
-            "choices": [
-                {
-                    "text": "Celebrate",
-                    "nextScene": "end"
-                }
-            ]
-        },
-        "end": {
-            "narrative": "Congratulations, you've won!",
-            "choices": []
-        }
+          }
+        ]
+      }  
     }
-}
+  }
+  
